@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import useInput from "./hooks/useInput";
+import { signupUser } from "./actions/index";
+import Signup from "./components/signup";
+import Login from "./components/login";
+import Homepage from "./components/homepage/homepage";
+import Backdrop from "./components/backdrop/backdrop";
+import ProfileMain from "./components/profile/profilemain";
+import UploadModal from "./components/uploadmodal/uploadmodal";
+import api from "./services/api";
+import ModalTransition from "./hooks/transition";
+import { useStateValue } from "../src/state";
+import AuthModal from "./components/authmodal/authmodal";
 
-function App() {
+interface Props {}
+
+const App: React.FC<Props> = ({}) => {
+  const [users, setUsers] = useState([]);
+  const [{ auth, components }, dispatch] = useStateValue();
+
+  const closeModal = () => {
+    dispatch({
+      type: "manage",
+      components: {
+        loginModal: false,
+        backdrop: false,
+      },
+    });
+  };
+
+  console.log("users", users);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        {components.backdrop && <Backdrop closeModal={closeModal} />}
+
+        <div className="App">
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <>
+                <Homepage />
+              </>
+            )}
+          ></Route>
+
+          <Route
+            exact
+            path="/myfiles"
+            render={() => (
+              <>
+                <ProfileMain />
+              </>
+            )}
+          ></Route>
+        </div>
+      </Router>
+    </>
   );
-}
+};
 
 export default App;

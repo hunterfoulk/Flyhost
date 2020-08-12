@@ -1,0 +1,127 @@
+.header {
+  display: flex;
+  width: 100%;
+  //   align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  //   height: 700px;w
+  //   padding: 30px 0px;
+  background-color: #6772e5;
+  .header-content {
+    display: flex;
+    // background-color: green;
+    // max-height: 50%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    justify-content: center;
+    // padding: 0px 150px;
+    // height: 100px;
+    .header-content-left {
+      display: flex;
+      width: 25%;
+      align-items: center;
+      //   background-color: orange;
+      //   max-height: 50%;
+      .left-content-container {
+        display: flex;
+        flex-direction: column;
+        // background-color: rgb(179, 95, 95);
+        // height: 50%;
+        // width: 60%;
+        .main-span {
+          font: 400 1.125rem/1.75rem "Open Sans", sans-serif;
+          color: rgb(204, 204, 204);
+        }
+
+        p {
+          line-height: 1.8rem;
+          color: rgb(240, 240, 240);
+          font: 400 1.125rem/1.75rem "Open Sans", sans-serif;
+        }
+        .left-content-header {
+          display: flex;
+          //   background-color: blue;
+          font-size: 2.4rem;
+          line-height: 4.125rem;
+          color: white;
+          font-weight: 600;
+        }
+      }
+    }
+    .header-content-right {
+      display: flex;
+      //   align-items: flex-start;
+      //   width: 50%;
+
+      //   background-color: yellow;
+
+      .right-img-container {
+        width: 550px;
+        height: 500px;
+        margin-left: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+          margin-top: 35px;
+        }
+      }
+    }
+  }
+
+  .login-button {
+    width: 120px;
+    //   height: 35px;
+    border: none;
+    color: #fff;
+    background-color: #124592;
+    border-radius: 2rem;
+    border: 0.125rem solid #124592;
+    padding: 7px 0px;
+    font-size: 20px;
+    margin-left: 5px;
+    outline: none;
+    cursor: pointer;
+  }
+  .login-button:hover {
+    background-color: #0e397a;
+    border: 0.125rem solid #0e397a;
+  }
+}
+.wave-container {
+  display: flex;
+  width: 100%;
+
+  .waves {
+    width: 100%;
+    height: 3vh;
+    min-height: 70px;
+    max-height: 150px;
+  }
+  .parallax {
+    animation: moveForever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  }
+  .p1 {
+    animation-delay: -2s;
+    animation-duration: 7s;
+  }
+  .p2 {
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+  .p3 {
+    animation-delay: -4s;
+    animation-duration: 13s;
+  }
+  .p4 {
+    animation-delay: -5s;
+    animation-duration: 20s;
+  }
+  @keyframes moveForever {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+}
