@@ -20,13 +20,6 @@ const UploadModal: React.FC<Props> = ({ closeModal }) => {
   const [{ auth, components }, dispatch] = useStateValue();
   const [fileReader, setFileReader] = useState<any>(false);
   const [newFile, setNewfile] = useState<any>([]);
-  const [fileName, setFileName] = useState([
-    {
-      name: "",
-      type: "",
-      size: 0,
-    },
-  ]);
 
   const notify = () =>
     toast.success("👍 Files Uploaded.", {
@@ -44,14 +37,6 @@ const UploadModal: React.FC<Props> = ({ closeModal }) => {
     const file = e.target.files[0];
 
     console.log("name", e.target.files[0].name);
-    setFileName([
-      {
-        name: e.target.files[0].name,
-        type: e.target.files[0].type,
-        size: e.target.files[0].size,
-      },
-    ]);
-    // setFileReader(fileName);
 
     if (file) {
       console.log("this is the file", e.target.value);
@@ -73,6 +58,7 @@ const UploadModal: React.FC<Props> = ({ closeModal }) => {
       formData.append("user_id", user_id);
       console.log("formData", newFile);
       api.post("/upload", formData);
+
       setTimeout(() => {
         dispatch({
           type: "manage",
@@ -118,7 +104,12 @@ const UploadModal: React.FC<Props> = ({ closeModal }) => {
                       <FaRegFileArchive style={{ marginRight: "8px" }} />
                     </div>
                     <span className="name-container">{file.name}</span>
-                    <span className="type-container">{file.type}</span>
+                    {file.type === "application/x-zip-compressed" ? (
+                      <span className="type-container">.zip</span>
+                    ) : (
+                      <span className="type-container">{file.type}</span>
+                    )}
+
                     <div className="size-container">
                       <span>{file.size} bytes</span>
                     </div>

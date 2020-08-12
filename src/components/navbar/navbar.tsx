@@ -21,7 +21,7 @@ const Navbar: React.FC<Props> = ({}) => {
               history.push("/");
             }}
           >
-            AppTitle
+            FlyHost
           </span>
         </div>
         <div className="nav-right">

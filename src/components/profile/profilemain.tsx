@@ -8,6 +8,7 @@ import api from "../../services/api";
 import { saveAs } from "file-saver";
 import FileSaver from "file-saver";
 import _ from "lodash";
+import { MdRefresh } from "react-icons/md";
 
 // FileSaver saveAs(Blob/File/Url, optional DOMString filename, optional Object { autoBom })
 
@@ -16,6 +17,7 @@ interface Props {}
 const ProfileMain: React.FC<Props> = ({}) => {
   const [myfiles, setMyFiles] = useState([]);
   const [{ auth, components }, dispatch] = useStateValue();
+  const [searchTerm, setSearchTerm] = useState<any>("");
 
   const getMyFiles = async () => {
     let user_id = parseFloat(auth.user.user_id);
@@ -43,10 +45,6 @@ const ProfileMain: React.FC<Props> = ({}) => {
     await api
       .get("/download", { ...queryParams, responseType: "arraybuffer" })
       .then((res) => {
-        // console.log("response data", res.data);
-        console.log("response dataaa", res);
-
-        console.log(files);
         var blob = new Blob([res.data], {
           type: file.type,
         });
@@ -55,11 +53,22 @@ const ProfileMain: React.FC<Props> = ({}) => {
       .catch((error) => {
         console.error(error, "fetch error.");
       });
-
-    // console.log("fired");
-    // console.log(file.file);
   };
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("search term", searchTerm);
+    let filteredData = myfiles.filter((file: any) =>
+      file.title?.toLowerCase().includes(searchTerm)
+    );
+
+    await setMyFiles(filteredData);
+    setSearchTerm("");
+  };
+
+  const refresh = () => {
+    getMyFiles();
+  };
   return (
     <>
       <div className="profile-main">
@@ -75,7 +84,6 @@ const ProfileMain: React.FC<Props> = ({}) => {
           pauseOnHover
         />
 
-        <ToastContainer />
         <div className="profile-main-header">
           <Navbar />
         </div>
@@ -85,22 +93,48 @@ const ProfileMain: React.FC<Props> = ({}) => {
               <div className="h1-container">
                 <h1>My Files</h1>
               </div>
-              <input placeholder="Search..." type="text" />
+
+              <form
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                }}
+                onSubmit={(e: any) => handleSubmit(e)}
+              >
+                <input
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  placeholder="Search..."
+                  type="text"
+                />
+              </form>
+            </div>
+            <div className="refresh-container">
+              <MdRefresh
+                onClick={refresh}
+                style={{ marginRight: "6px", cursor: "pointer" }}
+              />
             </div>
             <div className="files-main">
               {myfiles.map((file: any) => {
                 const date = new Date(file.date).toLocaleDateString();
-                console.log(file.file);
 
                 return (
                   <div className="file-container">
                     <div className="title-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
+                          borderLeft: " 1px solid rgb(201, 221, 245)",
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >
@@ -111,10 +145,13 @@ const ProfileMain: React.FC<Props> = ({}) => {
                     <div className="type-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
+
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >
@@ -125,10 +162,12 @@ const ProfileMain: React.FC<Props> = ({}) => {
                     <div className="size-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >
@@ -139,10 +178,13 @@ const ProfileMain: React.FC<Props> = ({}) => {
                     <div className="date-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
+
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >
@@ -153,10 +195,13 @@ const ProfileMain: React.FC<Props> = ({}) => {
                     <div className="stars-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
+
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >
@@ -167,10 +212,12 @@ const ProfileMain: React.FC<Props> = ({}) => {
                     <div className="delete-container">
                       <span
                         style={{
-                          backgroundColor: "#6772e5",
+                          // backgroundColor: "#6772e5",
+                          borderBottom: " 1px solid rgb(201, 221, 245)",
+                          borderRight: " 1px solid rgb(201, 221, 245)",
                           width: "100%",
                           textAlign: "center",
-                          color: "white",
+                          // color: "white",
                           padding: "5px 0px",
                         }}
                       >

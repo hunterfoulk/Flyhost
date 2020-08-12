@@ -35,49 +35,75 @@
         input {
           height: 30px;
           width: 40%;
-          font-size: 20px;
+          font-size: 22px;
           outline: none;
+          padding-left: 35px;
+          background: url(../../images/search.png);
+          background-repeat: no-repeat;
+          background-size: 26px;
+          background-position-y: center;
+          background-position: 5px;
+          border: 2px solid rgba(0, 0, 0, 0.651);
+          // ../../images/search.png
         }
+      }
+      .refresh-container {
+        display: flex;
+        justify-content: flex-end;
+        // background-color: red;
+        margin-top: 15px;
+        font-size: 30px;
       }
       .files-main {
         display: flex;
         flex-direction: column;
         // background-color: rgb(192, 192, 192);
-        margin-top: 35px;
-        padding: 30px 0px;
+        // margin-top: 20px;
+        // padding: 30px 0px;
         // height: 50%;
+
         .file-container {
           display: flex;
           // background-color: green;
-          background-color: rgb(233, 233, 233);
+          background-color: rgba(218, 218, 218, 0.144);
+          // background-color: white;
           // padding-bottom: 5px;
-          margin: 5px;
+          margin: 10px;
           font-size: 20px;
+          border-bottom: 1px solid rgb(201, 221, 245);
+          border-top: 1px solid rgb(201, 221, 245);
+
           .title-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 20%;
-            border-right: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(201, 221, 245);
+            border-left: 1px solid rgb(201, 221, 245);
+            // border-right: 1px solid rgb(204, 204, 204);
           }
           .type-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-right: 1px solid rgb(204, 204, 204);
+            // border-right: 1px solid rgb(204, 204, 204);
+            // border-bottom: 1px solid rgb(201, 221, 245);
+            border-right: 1px solid rgb(201, 221, 245);
             width: 20%;
           }
           .size-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-right: 1px solid rgb(204, 204, 204);
+            // border-right: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(201, 221, 245);
             width: 20%;
           }
           .date-container {
             display: flex;
             align-items: center;
-            border-right: 1px solid rgb(204, 204, 204);
+            // border-right: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(201, 221, 245);
             flex-direction: column;
             width: 20%;
           }
@@ -85,13 +111,15 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            border-right: 1px solid rgb(204, 204, 204);
+            // border-right: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(201, 221, 245);
             width: 20%;
           }
           .delete-container {
             display: flex;
             align-items: center;
-            border-right: 1px solid rgb(204, 204, 204);
+            // border-right: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(201, 221, 245);
             flex-direction: column;
             width: 20%;
             .download-button {
