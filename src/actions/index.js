@@ -36,12 +36,18 @@ export const signupUser = async (payload, clearForm) => {
     });
 };
 
-// UPLOAD FILE //
+// DELETE FILE //
 
-export const handleFileUpload = async (newFile, newDate) => {
-  let formData = new FormData();
+export const deleteFile = async (file_id) => {
+  console.log("file_id", file_id);
 
-  formData.append("newFile", newFile);
-  console.log("formData", formData);
-  console.log("formData", newFile);
+  await axios
+    .post(
+      "http://localhost:9000/.netlify/functions/server/filesharing/deletefile",
+      {
+        file_id: file_id,
+      }
+    )
+    .then((res) => console.log(res))
+    .catch((error) => console.error("delete failed:", error));
 };

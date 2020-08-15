@@ -13,7 +13,8 @@ const initialState = {
   components: {
     loginModal: false,
     backdrop: false,
-    uploadModal: true,
+    uploadModal: false,
+    navdrop: false,
   },
 };
 const user = localStorage.getItem("user");

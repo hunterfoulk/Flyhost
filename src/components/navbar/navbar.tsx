@@ -32,36 +32,16 @@ const Navbar: React.FC<Props> = ({}) => {
           >
             Home
           </span>
-          <span
-            onClick={() => {
-              dispatch({
-                type: "manage",
-                components: {
-                  uploadModal: true,
-                  backdrop: true,
-                },
-              });
-            }}
-          >
-            Upload
-          </span>
+          <span>Search</span>
           {auth.isAuthenticated ? (
-            <div
-              className="username-container"
-              onClick={() => {
-                history.push("/myfiles");
-              }}
-            >
-              <span className="username">
-                Account
-                <AiOutlineDown
-                  style={{
-                    position: "relative",
-                    top: "3px",
-                    left: "5px",
-                    fontSize: "18px",
-                  }}
-                />
+            <div className="username-container">
+              <span
+                className="username"
+                onClick={() => {
+                  history.push("/myfiles");
+                }}
+              >
+                Dashboard
               </span>
             </div>
           ) : (

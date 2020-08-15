@@ -15,6 +15,17 @@
     color: white;
   }
   .nav-right {
+    .navdrop {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      widows: 50px;
+      // height: 50px;
+      right: 22%;
+      top: 8%;
+      background-color: white;
+      color: black;
+    }
     display: flex;
     width: 70%;
     justify-content: center;
