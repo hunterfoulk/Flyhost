@@ -19,7 +19,6 @@ const ProfileMain: React.FC<Props> = ({}) => {
   const [{ auth, components }, dispatch] = useStateValue();
   const [searchTerm, setSearchTerm] = useState<any>("");
   const [deleteModal, setDeleteModal] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   const filterBox = (str: any) => {
     setMyFiles((prevState: any) =>
@@ -109,6 +108,31 @@ const ProfileMain: React.FC<Props> = ({}) => {
 
   const refresh = () => {
     getMyFiles();
+    setCheckboxes([
+      {
+        name: "downloads",
+        label: "Most Downloaded",
+        checked: false,
+      },
+      {
+        name: "gif",
+        label: "Gif",
+        checked: false,
+        filter: () => filterBox("gif"),
+      },
+      {
+        name: "zip",
+        label: "Zip",
+        checked: false,
+        filter: () => filterBox("zip"),
+      },
+      {
+        name: "mp4",
+        label: "MP4",
+        checked: false,
+        filter: () => filterBox("mp4"),
+      },
+    ]);
   };
 
   const handleDelete = (file: any) => {
