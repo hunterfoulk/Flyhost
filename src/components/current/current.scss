@@ -1,0 +1,120 @@
+.current-main {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: center;
+  align-items: center;
+  //   background-color: rgb(206, 124, 124);
+  width: 100%;
+  height: 100vh;
+
+  .nav-container {
+    display: flex;
+    background-color: #6772e5;
+    padding-bottom: 35px;
+    padding-top: 35px;
+    width: 100%;
+  }
+  .current-file-container {
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-end;
+    min-height: 40%;
+    width: 30%;
+    margin-top: 50px;
+    background-color: rgb(251, 251, 251);
+    border: 1px solid rgb(151, 151, 151);
+
+    .current-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(233, 233, 233);
+      //   border-bottom: 1px solid rgb(207, 207, 207);
+      width: 100%;
+      height: 35px;
+      //   padding: 0px 5px;
+      button {
+        display: flex;
+        align-items: center;
+        margin-right: 5px;
+        padding: 0px 12px;
+        font-size: 15px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+
+      button:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      span {
+        margin-left: 5px;
+        font-size: 22px;
+      }
+    }
+    .current-bottom {
+      display: flex;
+      margin-top: 25px;
+      flex-direction: column;
+      //   background-color: Red;
+      //   min-height: 10%;
+      border-top: 1px solid rgb(163, 163, 163);
+      .comments-header {
+        font-size: 20px;
+        margin-left: 20px;
+      }
+      .comments-container {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    .current-content-main {
+      display: flex;
+      //   background-color: purple;
+      height: 100%;
+
+      .current-left {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        // width: 50%;
+        // height: 100vh;
+        // background-color: red;
+        padding-right: 10px;
+        .type-container {
+          border-bottom: 1px dotted #000;
+          height: auto;
+          width: 100%;
+          margin-bottom: 5px;
+          padding-bottom: 3px;
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
+      .current-right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        // width: 50%;
+        // height: 100%;
+        // background-color: green;
+        padding-left: 10px;
+        .date-container {
+          display: flex;
+          justify-content: flex-end;
+          height: auto;
+          align-self: flex-end;
+          margin-bottom: 5px;
+          padding-bottom: 3px;
+          border-bottom: 1px dotted #000;
+          width: 100%;
+          //   height: 20px;
+          span {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

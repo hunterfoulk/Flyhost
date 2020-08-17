@@ -7,3 +7,12 @@ interface File {
   date: String;
   title: String;
 }
+
+interface handleSearch {
+  handleSearch: () => void;
+}
+
+handleCurrent;
+interface handleCurrent {
+  handleCurrent: () => void;
+}

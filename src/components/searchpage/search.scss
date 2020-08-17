@@ -1,0 +1,97 @@
+.search-main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: rgba(248, 248, 248, 0.849);
+  // background-color: rgb(238, 238, 238);
+  //   height: 950px;
+
+  .nav-container {
+    display: flex;
+    background-color: #6772e5;
+    padding-bottom: 35px;
+    padding-top: 35px;
+  }
+  .search-header {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    // margin-top: 50px;
+    // background-color: green;
+    // background-color: rgba(245, 245, 245, 0.849);
+    // height: 100vh;
+    width: 100%;
+    // padding-bottom: 60px;
+    // padding-top: 40px;
+    margin-top: 70px;
+    height: 100vh;
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      //   background-color: Red;
+      width: 100%;
+      margin-top: 35px;
+      flex-direction: column;
+      form {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .links-container {
+        display: flex;
+        // background-color: red;
+
+        span {
+          margin: 10px;
+          color: #009;
+          text-decoration: none;
+          border-bottom: 1px dotted #000;
+          cursor: pointer;
+        }
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px 11px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      input {
+        height: 22px;
+        width: 24%;
+        outline: none;
+        background: url(../../images/search.png);
+        background-repeat: no-repeat;
+        background-size: 26px;
+        background-position-y: center;
+        background-position: 5px;
+        padding-left: 35px;
+        font-size: 16px;
+        padding-top: 2px;
+        border: 2px solid rgba(0, 0, 0, 0.61);
+      }
+    }
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //   background-color: red;
+      width: 230px;
+      height: 260px;
+      margin-top: 30px;
+      span {
+        font-size: 32px;
+        font-weight: bold;
+        color: #6e78ece3;
+        text-shadow: 0.7px 0.7px #0000007c;
+      }
+      img {
+        height: 90%;
+        width: 100%;
+      }
+    }
+  }
+}

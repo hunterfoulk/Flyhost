@@ -32,7 +32,13 @@ const Navbar: React.FC<Props> = ({}) => {
           >
             Home
           </span>
-          <span>Search</span>
+          <span
+            onClick={() => {
+              history.push("/search");
+            }}
+          >
+            Search
+          </span>
           {auth.isAuthenticated ? (
             <div className="username-container">
               <span

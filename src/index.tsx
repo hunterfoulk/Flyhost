@@ -16,6 +16,12 @@ const initialState = {
     uploadModal: false,
     navdrop: false,
   },
+  searchresults: {
+    results: [],
+  },
+  currentfile: {
+    current: {},
+  },
 };
 const user = localStorage.getItem("user");
 if (user) {
@@ -43,7 +49,16 @@ const reducer = (state: any, action: any) => {
         ...state,
         components: action.components,
       };
-
+    case "search":
+      return {
+        ...state,
+        searchresults: action.searchresults,
+      };
+    case "current":
+      return {
+        ...state,
+        currentfile: action.currentfile,
+      };
     default:
       return state;
   }

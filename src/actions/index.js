@@ -2,7 +2,6 @@ import axios from "axios";
 import api from "../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useStateValue } from "../src/state";
 
 ///// SIGNUP /////
 export const signupUser = async (payload, clearForm) => {
