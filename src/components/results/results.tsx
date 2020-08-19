@@ -4,6 +4,7 @@ import { useStateValue } from "../../state";
 import Navbar from "../navbar/navbar";
 import { AiOutlineFileZip } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
+import Noresults from "../noresults/noresults";
 
 interface Props {
   handleSearch: (searchterm: string) => void;
@@ -23,16 +24,27 @@ const Results: React.FC<Props> = ({ handleSearch }) => {
     console.log("PARSED search term", searchterm);
 
     return () => {
-      // dispatch({
-      //   type: "search",
-      //   searchresults: {
-      //     results: {},
-      //   },
-      // });
+      dispatch({
+        type: "search",
+        searchresults: {
+          results: [],
+        },
+      });
+      dispatch({
+        type: "manage",
+        components: {
+          ...components,
+          isFetching: true,
+        },
+      });
     };
   }, [fullPath]);
 
   let results = searchresults.results.length;
+
+  if (!components.isFetching && searchresults.results.length === 0) {
+    return <Noresults />;
+  }
 
   return (
     <>

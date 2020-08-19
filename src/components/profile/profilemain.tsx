@@ -226,151 +226,158 @@ const ProfileMain: React.FC<Props> = ({}) => {
                 }}
               />
             </div>
-            <div className="files-main">
-              {myFiles.map((file: any) => {
-                const date = new Date(file.date).toLocaleDateString();
+            {myFiles.length === 0 ? (
+              <div className="no-files">
+                <h3>You currently have no files uploaded.</h3>
+              </div>
+            ) : (
+              <div className="files-main">
+                {myFiles.map((file: any) => {
+                  const date = new Date(file.date).toLocaleDateString();
 
-                return (
-                  <div className="file-container">
-                    {deleteModal && (
-                      <div className="delete-modal">
-                        <div className="delete-header">
-                          <FaExclamation />
+                  return (
+                    <div className="file-container">
+                      {deleteModal && (
+                        <div className="delete-modal">
+                          <div className="delete-header">
+                            <FaExclamation />
+                          </div>
+                          <div className="delete-content">
+                            <p>Are you sure you want to delete these files?</p>
+                          </div>
+                          <div className="delete-button-container">
+                            <button
+                              className="cancel-button"
+                              onClick={() => setDeleteModal(false)}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              className="delete-button"
+                              onClick={async () => {
+                                await handleDelete(file);
+                                setDeleteModal(false);
+                                refresh();
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
-                        <div className="delete-content">
-                          <p>Are you sure you want to delete these files?</p>
-                        </div>
-                        <div className="delete-button-container">
-                          <button
-                            className="cancel-button"
-                            onClick={() => setDeleteModal(false)}
+                      )}
+                      <div className="title-container">
+                        <span
+                          style={{
+                            // backgroundColor: "#6772e5",
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+                            borderLeft: " 1px solid rgb(201, 221, 245)",
+                            width: "100%",
+                            textAlign: "center",
+                            // color: "white",
+                            padding: "5px 0px",
+                          }}
+                        >
+                          File Name
+                        </span>
+                        <span>{file.title}</span>
+                      </div>
+                      <div className="type-container">
+                        <span
+                          style={{
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+                            width: "100%",
+                            textAlign: "center",
+                            padding: "5px 0px",
+                          }}
+                        >
+                          File Type
+                        </span>
+                        <span style={{ padding: "5px 0px" }}>{file.type}</span>
+                      </div>
+                      <div className="size-container">
+                        <span
+                          style={{
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+                            width: "100%",
+                            textAlign: "center",
+
+                            padding: "5px 0px",
+                          }}
+                        >
+                          File Size
+                        </span>
+                        <span>{file.size} Bytes</span>
+                      </div>
+                      <div className="date-container">
+                        <span
+                          style={{
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+
+                            width: "100%",
+                            textAlign: "center",
+
+                            padding: "5px 0px",
+                          }}
+                        >
+                          Date Uploaded
+                        </span>
+                        <span>{date}</span>
+                      </div>
+                      <div className="stars-container">
+                        <span
+                          style={{
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+
+                            width: "100%",
+                            textAlign: "center",
+
+                            padding: "5px 0px",
+                          }}
+                        >
+                          File Downloads
+                        </span>
+                        <span>{file.stars}</span>
+                      </div>
+                      <div className="delete-container">
+                        <span
+                          style={{
+                            borderBottom: " 1px solid rgb(201, 221, 245)",
+                            borderRight: " 1px solid rgb(201, 221, 245)",
+                            width: "100%",
+                            textAlign: "center",
+
+                            padding: "5px 0px",
+                          }}
+                        >
+                          Actions
+                        </span>
+                        <div>
+                          <a
+                            className="download-button"
+                            onClick={() => saveFile(file)}
                           >
-                            Cancel
-                          </button>
+                            Download
+                          </a>
+
                           <button
+                            // onClick={() => setDeleteModal(true)}
+                            onClick={() => handleDelete(file)}
                             className="delete-button"
-                            onClick={async () => {
-                              await handleDelete(file);
-                              setDeleteModal(false);
-                              refresh();
-                            }}
                           >
                             Delete
                           </button>
                         </div>
                       </div>
-                    )}
-                    <div className="title-container">
-                      <span
-                        style={{
-                          // backgroundColor: "#6772e5",
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-                          borderLeft: " 1px solid rgb(201, 221, 245)",
-                          width: "100%",
-                          textAlign: "center",
-                          // color: "white",
-                          padding: "5px 0px",
-                        }}
-                      >
-                        File Name
-                      </span>
-                      <span>{file.title}</span>
                     </div>
-                    <div className="type-container">
-                      <span
-                        style={{
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-                          width: "100%",
-                          textAlign: "center",
-                          padding: "5px 0px",
-                        }}
-                      >
-                        File Type
-                      </span>
-                      <span style={{ padding: "5px 0px" }}>{file.type}</span>
-                    </div>
-                    <div className="size-container">
-                      <span
-                        style={{
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-                          width: "100%",
-                          textAlign: "center",
-
-                          padding: "5px 0px",
-                        }}
-                      >
-                        File Size
-                      </span>
-                      <span>{file.size} Bytes</span>
-                    </div>
-                    <div className="date-container">
-                      <span
-                        style={{
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-
-                          width: "100%",
-                          textAlign: "center",
-
-                          padding: "5px 0px",
-                        }}
-                      >
-                        Date Uploaded
-                      </span>
-                      <span>{date}</span>
-                    </div>
-                    <div className="stars-container">
-                      <span
-                        style={{
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-
-                          width: "100%",
-                          textAlign: "center",
-
-                          padding: "5px 0px",
-                        }}
-                      >
-                        File Downloads
-                      </span>
-                      <span>{file.stars}</span>
-                    </div>
-                    <div className="delete-container">
-                      <span
-                        style={{
-                          borderBottom: " 1px solid rgb(201, 221, 245)",
-                          borderRight: " 1px solid rgb(201, 221, 245)",
-                          width: "100%",
-                          textAlign: "center",
-
-                          padding: "5px 0px",
-                        }}
-                      >
-                        Actions
-                      </span>
-                      <div>
-                        <a
-                          className="download-button"
-                          onClick={() => saveFile(file)}
-                        >
-                          Download
-                        </a>
-
-                        <button
-                          onClick={() => setDeleteModal(true)}
-                          className="delete-button"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div className="right-main">
             <div className="right-header">

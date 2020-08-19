@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import useInput from "./hooks/useInput";
 import { signupUser } from "./actions/index";
-import Signup from "./components/signup";
-import Login from "./components/login";
 import Homepage from "./components/homepage/homepage";
 import Backdrop from "./components/backdrop/backdrop";
 import ProfileMain from "./components/profile/profilemain";
@@ -47,10 +45,19 @@ const App: React.FC<Props> = ({}) => {
       )
       .then((res) => {
         console.log("search response", res.data);
+
         dispatch({
           type: "search",
           searchresults: {
             results: res.data,
+          },
+        });
+
+        dispatch({
+          type: "manage",
+          components: {
+            ...components,
+            isFetching: false,
           },
         });
       })
@@ -60,7 +67,6 @@ const App: React.FC<Props> = ({}) => {
   };
 
   const handleCurrent = async (file_id: any) => {
-    // let file_id = newFile.file_id;
     console.log("file_id ", file_id);
 
     const queryParams = { params: { file_id } };
@@ -71,13 +77,44 @@ const App: React.FC<Props> = ({}) => {
         queryParams
       )
       .then((res) => {
-        console.log("response", res.data);
+        console.log("response", res.data.results);
+        console.log("username", res.data.user);
+        console.log("comments", res.data.newresults);
+
         dispatch({
           type: "current",
           currentfile: {
-            current: res.data,
+            current: res.data.results,
+            username: res.data.user,
+            comments: res.data.newresults,
           },
         });
+
+        dispatch({
+          type: "manage",
+          components: {
+            ...components,
+            isFetching: false,
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  };
+
+  const fetchComments = async (file_id: any) => {
+    console.log("file_id ", file_id);
+
+    const queryParams = { params: { file_id } };
+
+    await axios
+      .get(
+        `http://localhost:9000/.netlify/functions/server/filesharing/fetchcomments`,
+        queryParams
+      )
+      .then((res) => {
+        console.log("response", res.data);
       })
       .catch((error) => {
         console.error("error", error);
@@ -132,12 +169,15 @@ const App: React.FC<Props> = ({}) => {
           path="/current/:file_id"
           render={() => (
             <>
-              <Current handleCurrent={handleCurrent} />
+              <Current
+                handleCurrent={handleCurrent}
+                fetchComments={fetchComments}
+              />
             </>
           )}
         ></Route>
 
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </>
   );

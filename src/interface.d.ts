@@ -16,3 +16,7 @@ handleCurrent;
 interface handleCurrent {
   handleCurrent: () => void;
 }
+
+interface fetchComments {
+  fetchComments: () => void;
+}

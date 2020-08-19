@@ -15,12 +15,15 @@ const initialState = {
     backdrop: false,
     uploadModal: false,
     navdrop: false,
+    isFetching: true,
   },
   searchresults: {
     results: [],
   },
   currentfile: {
     current: {},
+    username: "",
+    comments: [],
   },
 };
 const user = localStorage.getItem("user");

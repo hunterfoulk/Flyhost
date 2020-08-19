@@ -11,6 +11,16 @@ const Navbar: React.FC<Props> = ({}) => {
   const [{ auth, components }, dispatch] = useStateValue();
   const history = useHistory();
 
+  const handleLogout = () => {
+    localStorage.clear();
+
+    dispatch({
+      type: "logout",
+    });
+
+    history.push("/");
+  };
+
   return (
     <>
       <div className="navbar">
@@ -40,16 +50,30 @@ const Navbar: React.FC<Props> = ({}) => {
             Search
           </span>
           {auth.isAuthenticated ? (
-            <div className="username-container">
-              <span
-                className="username"
-                onClick={() => {
-                  history.push("/myfiles");
-                }}
-              >
-                Dashboard
-              </span>
-            </div>
+            <>
+              <div className="username-container">
+                <span
+                  className="username"
+                  onClick={() => {
+                    history.push("/myfiles");
+                  }}
+                >
+                  Dashboard
+                </span>
+              </div>
+
+              <div className="logout">
+                {" "}
+                <span
+                  className="username"
+                  onClick={() => {
+                    handleLogout();
+                  }}
+                >
+                  Logout
+                </span>
+              </div>
+            </>
           ) : (
             <button
               onClick={() => {

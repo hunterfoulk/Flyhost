@@ -30,6 +30,9 @@ const useLogin = () => {
             isAuthenticated: true,
             user: user,
           },
+        });
+
+        dispatch({
           type: "manage",
           components: {
             loginModal: false,
@@ -37,6 +40,7 @@ const useLogin = () => {
           },
         });
       })
+
       .catch((error) => {
         console.error("error", error);
       });
