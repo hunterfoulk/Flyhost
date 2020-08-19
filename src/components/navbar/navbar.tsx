@@ -4,6 +4,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { AiOutlineDown } from "react-icons/ai";
 import { useStateValue } from "../../state";
 import { Link, useHistory } from "react-router-dom";
+import Logo from "../../images/FLYHOST5.png";
 
 interface Props {}
 
@@ -25,6 +26,10 @@ const Navbar: React.FC<Props> = ({}) => {
     <>
       <div className="navbar">
         <div className="nav-left">
+          <div className="logo-container">
+            <img src={Logo} />
+          </div>
+
           <span
             style={{ cursor: "pointer" }}
             onClick={() => {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.scss";
-import Logo from "../../images/FLYHOST4.png";
+import Logo from "../../images/FLYHOST5.png";
 import { FiMail } from "react-icons/fi";
 
 interface Props {}

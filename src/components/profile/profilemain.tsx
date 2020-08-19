@@ -67,6 +67,13 @@ const ProfileMain: React.FC<Props> = ({}) => {
         setMyFiles(res.data);
         setOriginal(res.data);
         console.log(res.data);
+
+        dispatch({
+          type: "manage",
+          components: {
+            isFetching: false,
+          },
+        });
       })
       .catch((error) => {
         console.error(error, "fetch error.");
@@ -75,6 +82,16 @@ const ProfileMain: React.FC<Props> = ({}) => {
 
   useEffect(() => {
     getMyFiles();
+
+    return () => {
+      setMyFiles([]);
+      dispatch({
+        type: "manage",
+        components: {
+          isFetching: true,
+        },
+      });
+    };
   }, []);
 
   const saveFile = async (file: any) => {
@@ -226,7 +243,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
                 }}
               />
             </div>
-            {myFiles.length === 0 ? (
+            {myFiles.length === 0 && !components.isFetching ? (
               <div className="no-files">
                 <h3>You currently have no files uploaded.</h3>
               </div>

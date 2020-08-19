@@ -53,8 +53,8 @@ const Search: React.FC<Props> = ({}) => {
               Search
             </button>
             <div style={{ marginTop: "5px" }} className="links-container">
-              <span>sign up</span>
-              <span>login</span>
+              <span>terms of use</span>
+              <span>privacy policy</span>
               <span>about</span>
               <span>contact</span>
             </div>
