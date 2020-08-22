@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import useInput from "./hooks/useInput";
 import { signupUser } from "./actions/index";
@@ -15,12 +15,15 @@ import { useStateValue } from "../src/state";
 import AuthModal from "./components/authmodal/authmodal";
 import Footer from "./components/footer/footer";
 import axios from "axios";
+import useClickOutside from "./hooks/useClickOutside";
+import { Link, useHistory } from "react-router-dom";
 
 interface Props {}
 
 const App: React.FC<Props> = ({}) => {
   const [users, setUsers] = useState([]);
   const [{ auth, components, searchresults }, dispatch] = useStateValue();
+  const history = useHistory();
 
   const closeModal = () => {
     dispatch({
@@ -28,6 +31,21 @@ const App: React.FC<Props> = ({}) => {
       components: {
         loginModal: false,
         backdrop: false,
+      },
+    });
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+
+    dispatch({
+      type: "logout",
+    });
+
+    dispatch({
+      type: "manage",
+      components: {
+        navdrop: false,
       },
     });
   };
@@ -121,11 +139,75 @@ const App: React.FC<Props> = ({}) => {
       });
   };
 
+  const ref = useRef<any>();
+  useClickOutside(ref, () =>
+    dispatch({
+      type: "manage",
+      components: {
+        navdrop: false,
+      },
+    })
+  );
+
   return (
     <>
       <Router>
         {components.backdrop && <Backdrop closeModal={closeModal} />}
-
+        {components.navdrop && (
+          <div className="nav-drop" ref={ref}>
+            <Link
+              onClick={() => {
+                dispatch({
+                  type: "manage",
+                  components: {
+                    navdrop: false,
+                  },
+                });
+              }}
+              style={{ textDecoration: "none", margin: "10px" }}
+              to="/search"
+            >
+              <span>Search</span>
+            </Link>
+            <Link
+              onClick={() => {
+                dispatch({
+                  type: "manage",
+                  components: {
+                    navdrop: false,
+                  },
+                });
+              }}
+              style={{ textDecoration: "none", margin: "10px" }}
+              to="/myfiles"
+            >
+              <span>Dashboard</span>
+            </Link>
+            {auth.isAuthenticated ? (
+              <span
+                style={{ textDecoration: "none", margin: "10px" }}
+                onClick={() => handleLogout()}
+              >
+                Logout
+              </span>
+            ) : (
+              <span
+                onClick={() => {
+                  dispatch({
+                    type: "manage",
+                    components: {
+                      loginModal: true,
+                      backdrop: true,
+                    },
+                  });
+                }}
+                style={{ textDecoration: "none", margin: "10px" }}
+              >
+                Login
+              </span>
+            )}
+          </div>
+        )}
         <Route
           exact
           path="/"

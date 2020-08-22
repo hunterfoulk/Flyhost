@@ -28,23 +28,13 @@
     }
   }
   .nav-right {
-    .navdrop {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      widows: 50px;
-      // height: 50px;
-      right: 22%;
-      top: 8%;
-      background-color: white;
-      color: black;
-    }
     display: flex;
     width: 70%;
     justify-content: center;
     align-items: center;
     font-size: 22px;
     color: white;
+    overflow: hidden;
     // background-color: rgb(0, 225, 255);
     span {
       margin: 6px;
@@ -79,6 +69,56 @@
     .login-button:hover {
       background-color: #0e397a;
       border: 0.125rem solid #0e397a;
+    }
+  }
+}
+
+.hamburger {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+
+  .hamburger-icon {
+    color: white;
+    font-size: 28px;
+    margin-right: 25px;
+  }
+}
+
+.nav-drop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  // height: 60px;
+  width: 100%;
+  // top: 65px;
+  background-color: #515ac7;
+  z-index: 100;
+  border-bottom: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  span {
+    margin: 10px 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 870px) {
+  .navbar {
+    // display: none;
+    margin-top: 15px;
+    .nav-left {
+      justify-content: flex-start;
+      margin-left: 25px;
+      .logo-container {
+        // background-color: red;
+        margin-left: 5px;
+        margin-top: 5px;
+      }
     }
   }
 }

@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  /* overflow-y: hidden; */
+  overflow-x: hidden;
+  /* min-height: 100vh; */
   /* background-color: red; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",

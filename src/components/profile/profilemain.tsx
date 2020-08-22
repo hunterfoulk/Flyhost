@@ -19,6 +19,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
   const [{ auth, components }, dispatch] = useStateValue();
   const [searchTerm, setSearchTerm] = useState<any>("");
   const [deleteModal, setDeleteModal] = useState(false);
+  let isMobile = window.innerWidth <= 580;
 
   const filterBox = (str: any) => {
     setMyFiles((prevState: any) =>
@@ -34,7 +35,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
   const [checkboxes, setCheckboxes] = useState([
     {
       name: "downloads",
-      label: "Most Downloaded",
+      label: "Downloads",
       checked: false,
     },
     {
@@ -218,22 +219,33 @@ const ProfileMain: React.FC<Props> = ({}) => {
                   placeholder="Search..."
                   type="text"
                 />
+                {isMobile ? (
+                  <button
+                    type="submit"
+                    style={{ marginRight: "19px", fontWeight: "bold" }}
+                  >
+                    Search
+                  </button>
+                ) : null}
               </form>
             </div>
             <div className="refresh-container">
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "manage",
-                    components: {
-                      uploadModal: true,
-                      backdrop: true,
-                    },
-                  });
-                }}
-              >
-                Upload
-              </button>
+              {isMobile ? null : (
+                <button
+                  onClick={() => {
+                    dispatch({
+                      type: "manage",
+                      components: {
+                        uploadModal: true,
+                        backdrop: true,
+                      },
+                    });
+                  }}
+                >
+                  Upload
+                </button>
+              )}
+
               <MdRefresh
                 onClick={refresh}
                 style={{
@@ -251,37 +263,31 @@ const ProfileMain: React.FC<Props> = ({}) => {
               <div className="files-main">
                 {myFiles.map((file: any) => {
                   const date = new Date(file.date).toLocaleDateString();
+                  let isMobile = window.innerWidth <= 580;
+
+                  if (
+                    isMobile === true &&
+                    file.type === "application/x-zip-compressed"
+                  ) {
+                    file.type = ".zip";
+                  }
+
+                  if (isMobile === true && file.type === "image/jpeg") {
+                    file.type = "jpg";
+                  }
+
+                  if (isMobile === true && file.type === "image/png") {
+                    file.type = "png";
+                  }
+                  if (isMobile === true && file.type === "video/mp4") {
+                    file.type = "mp4";
+                  }
+                  if (isMobile === true) {
+                    file.title = file.title.slice(0, 6) + "...";
+                  }
 
                   return (
                     <div className="file-container">
-                      {deleteModal && (
-                        <div className="delete-modal">
-                          <div className="delete-header">
-                            <FaExclamation />
-                          </div>
-                          <div className="delete-content">
-                            <p>Are you sure you want to delete these files?</p>
-                          </div>
-                          <div className="delete-button-container">
-                            <button
-                              className="cancel-button"
-                              onClick={() => setDeleteModal(false)}
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              className="delete-button"
-                              onClick={async () => {
-                                await handleDelete(file);
-                                setDeleteModal(false);
-                                refresh();
-                              }}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        </div>
-                      )}
                       <div className="title-container">
                         <span
                           style={{
@@ -295,7 +301,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
                             padding: "5px 0px",
                           }}
                         >
-                          File Name
+                          Name
                         </span>
                         <span>{file.title}</span>
                       </div>
@@ -309,7 +315,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
                             padding: "5px 0px",
                           }}
                         >
-                          File Type
+                          Type
                         </span>
                         <span style={{ padding: "5px 0px" }}>{file.type}</span>
                       </div>
@@ -324,26 +330,51 @@ const ProfileMain: React.FC<Props> = ({}) => {
                             padding: "5px 0px",
                           }}
                         >
-                          File Size
+                          Size
                         </span>
-                        <span>{file.size} Bytes</span>
+                        {isMobile ? (
+                          <span>{file.size} B</span>
+                        ) : (
+                          <span>{file.size} Bytes</span>
+                        )}
                       </div>
-                      <div className="date-container">
-                        <span
-                          style={{
-                            borderBottom: " 1px solid rgb(201, 221, 245)",
-                            borderRight: " 1px solid rgb(201, 221, 245)",
+                      {isMobile ? (
+                        <div className="date-container">
+                          <span
+                            style={{
+                              borderBottom: " 1px solid rgb(201, 221, 245)",
+                              borderRight: " 1px solid rgb(201, 221, 245)",
 
-                            width: "100%",
-                            textAlign: "center",
+                              width: "100%",
+                              textAlign: "center",
 
-                            padding: "5px 0px",
-                          }}
-                        >
-                          Date Uploaded
-                        </span>
-                        <span>{date}</span>
-                      </div>
+                              padding: "5px 0px",
+                            }}
+                          >
+                            Date
+                          </span>
+
+                          <span>{date}</span>
+                        </div>
+                      ) : (
+                        <div className="date-container">
+                          <span
+                            style={{
+                              borderBottom: " 1px solid rgb(201, 221, 245)",
+                              borderRight: " 1px solid rgb(201, 221, 245)",
+
+                              width: "100%",
+                              textAlign: "center",
+
+                              padding: "5px 0px",
+                            }}
+                          >
+                            Date Uploaded
+                          </span>
+
+                          <span>{date}</span>
+                        </div>
+                      )}
                       <div className="stars-container">
                         <span
                           style={{
@@ -356,7 +387,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
                             padding: "5px 0px",
                           }}
                         >
-                          File Downloads
+                          Downloads
                         </span>
                         <span>{file.stars}</span>
                       </div>
@@ -373,7 +404,7 @@ const ProfileMain: React.FC<Props> = ({}) => {
                         >
                           Actions
                         </span>
-                        <div>
+                        <div className="buttons-container">
                           <a
                             className="download-button"
                             onClick={() => saveFile(file)}

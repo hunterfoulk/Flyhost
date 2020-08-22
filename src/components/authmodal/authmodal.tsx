@@ -12,9 +12,9 @@ interface Props {
 
 const AuthModal: React.FC<Props> = ({ closeModal }) => {
   const [tab, setTab] = useState("LOGIN");
-  const email = useInput("huntertehjakey@hotmail.com");
+  const email = useInput("");
   const username = useInput("");
-  const password = useInput("hunter");
+  const password = useInput("");
   const loginUser = useLogin();
 
   const handleSubmitLogin = async (e: any) => {
@@ -93,6 +93,7 @@ const AuthModal: React.FC<Props> = ({ closeModal }) => {
             />
             <input
               placeholder="Password..."
+              type="password"
               value={password.value}
               onChange={password.onChange}
             />
@@ -111,6 +112,7 @@ const AuthModal: React.FC<Props> = ({ closeModal }) => {
             />
             <input
               placeholder="Password..."
+              type="password"
               value={password.value}
               onChange={password.onChange}
             />

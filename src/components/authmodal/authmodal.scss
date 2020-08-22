@@ -88,3 +88,17 @@
 //   cursor: pointer;
 //   background-color: rgba($color: black, $alpha: 0.7);
 // }
+
+@media (max-width: 550px) {
+  .modal-container {
+    width: 100%;
+    // position: fixed;
+    left: 0px;
+    transform: translate(0%);
+    // height: 100vh;
+    top: 0px;
+    .form-container {
+      width: 100%;
+    }
+  }
+}

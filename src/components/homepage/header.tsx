@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.scss";
 import Navbar from "../navbar/navbar";
-import Headerimg from "../../images/headersvg6.svg";
+import Headerimg from "../../images/headersvg6.jpg";
 import { FaSignInAlt } from "react-icons/fa";
 import { useStateValue } from "../../state";
 
@@ -22,7 +22,7 @@ const Header: React.FC<Props> = ({}) => {
               </div>
               <div className="left-content-text">
                 <p>
-                  AppTitle is all about making it as easy as possible for anyone
+                  FlyHost is all about making it as easy as possible for anyone
                   around the world to upload, share, and download files they
                   need for everyday life.
                 </p>

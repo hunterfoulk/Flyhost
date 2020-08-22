@@ -5,8 +5,11 @@
   background-color: #6772e5;
   //   background-color: rgba(245, 245, 245, 0.849);
   height: 90px;
-
   width: 100%;
+  // position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
 
   .footer-left {
     display: flex;
@@ -47,5 +50,44 @@
     width: 33%;
     color: rgb(236, 236, 236);
     // background-color: blue;
+  }
+}
+
+@media (max-width: 770px) {
+  .footer-container {
+    .footer-right {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-container {
+    justify-content: space-around;
+    .footer-middle {
+      width: 20%;
+      display: none;
+      .logo-container {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .footer-left {
+      width: 50%;
+      font-size: 13px;
+    }
+    .footer-right {
+      // width: 40%;
+
+      font-size: 13px;
+      span {
+        text-align: center;
+      }
+    }
   }
 }

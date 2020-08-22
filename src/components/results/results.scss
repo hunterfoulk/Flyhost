@@ -72,3 +72,29 @@
     }
   }
 }
+
+@media (max-width: 1050px) {
+  .results-main {
+    .files-container {
+      // background-color: red;
+      // margin: 0px 10px;
+      .h1-container {
+        width: 100%;
+        justify-content: center;
+        h1 {
+        }
+      }
+      .files-header {
+        // background-color: green;
+        width: 100%;
+      }
+      .file {
+        // background-color: green;
+        width: 100%;
+        .titles-containers {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

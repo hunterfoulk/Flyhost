@@ -162,3 +162,57 @@
     }
   }
 }
+
+@media (max-width: 1370px) {
+  .current-main {
+    .current-file-container {
+      // background-color: green;
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 1270px) {
+  .current-main {
+    .current-file-container {
+      // background-color: green;
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 610px) {
+  .current-main {
+    .current-file-container {
+      // background-color: green;
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 474px) {
+  .current-main {
+    .current-file-container {
+      // background-color: green;
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  .current-main {
+    .current-file-container {
+      // background-color: green;
+
+      width: 100%;
+      .current-content-main {
+        font-size: 15px;
+        // background-color: red;
+        .current-right {
+          // background-color: green;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
